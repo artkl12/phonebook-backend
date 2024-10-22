@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 
 mongoose.set("strictQuery", false);
 
-const url =
-  "mongodb+srv://artaklauze:fGLyoJy9idsEDWD2@cluster0.jsrkl.mongodb.net/phonebookApp?retryWrites=true&w=majority&appName=Cluster0";
+const url = process.env.MONGODB_URI;
 
 console.log("connecting to", process.env.MONGODB_URI);
 
