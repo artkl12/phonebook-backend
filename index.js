@@ -97,16 +97,16 @@ app.delete("/api/persons/:id", (request, response, next) => {
     .catch(error => next(error))
 });
 
-const generateId = () => {
-  let id;
-  let isUnique = false;
+// const generateId = () => {
+//   let id;
+//   let isUnique = false;
 
-  while (!isUnique) {
-    id = Math.floor(Math.random() * 100).toString();
-    isUnique = !persons.some((person) => person.id === id);
-  }
-  return id;
-};
+//   while (!isUnique) {
+//     id = Math.floor(Math.random() * 100).toString();
+//     isUnique = !persons.some((person) => person.id === id);
+//   }
+//   return id;
+// };
 
 app.post("/api/persons", (request, response, next) => {
   const body = request.body;
