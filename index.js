@@ -5,13 +5,13 @@ const app = express();
 const cors = require("cors");
 const Person = require("./models/person");
 
-// let persons = [
-//   {
-//     id: "",
-//     name: "",
-//     number: "",
-//   }
-// ];
+let persons = [
+  {
+    id: "",
+    name: "",
+    number: "",
+  }
+];
 
 app.use(express.static("dist"));
 app.use(express.json());
