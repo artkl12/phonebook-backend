@@ -2,8 +2,8 @@ POST http://localhost:3002/api/persons
 Content-Type: application/json
 
 {  
-  "name": "abcc",
-  "number": "9489"
+  "name": "Harry Potter",
+  "number": "111-12345678999"
 }
 
 ###

@@ -4,24 +4,26 @@ const morgan = require("morgan");
 const app = express();
 const cors = require("cors");
 const Person = require("./models/person");
+app.use(express.static("dist"));
+app.use(express.json());
+
+morgan.token("body", function (request, response) {
+  return JSON.stringify(request.body);
+});
+
+app.use(
+  morgan(":method :url :status :res[content-length] - :response-time ms :body")
+);
+
+app.use(cors());
 
 let persons = [
   {
     id: "",
     name: "",
     number: "",
-  }
+  },
 ];
-
-app.use(express.static("dist"));
-app.use(express.json());
-morgan.token("body", function (request, response) {
-  return JSON.stringify(request.body);
-});
-app.use(
-  morgan(":method :url :status :res[content-length] - :response-time ms :body")
-);
-app.use(cors());
 
 app.get("/", (request, response) => {
   response.send("<h1>Hello World!</h1>");
@@ -33,17 +35,16 @@ app.get("/api/persons", (request, response) => {
   });
 });
 
-app.get("/info", (request, response) => {
-  const totalPeople = persons.length;
+app.get("/info", (request, response, next) => {
   const requestTime = new Date();
 
-  response.send(
-    `<p>Phonebook has info for ` +
-      totalPeople +
-      ` people</p><p>` +
-      requestTime +
-      `</p>`
-  );
+  Person.find({})
+    .then((persons) => {
+      response.send(
+        `<p>Phonebook has info for ${persons.length} people</p> <p>${requestTime}</p>`
+      );
+    })
+    .catch((error) => next(error));
 });
 
 app.get("/api/persons/:id", (request, response, next) => {
