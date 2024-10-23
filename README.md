@@ -1,5 +1,5 @@
-https://phonebook-render-test-5azx.onrender.com/
+https://phonebook-backend-kt1w.onrender.com/
 
 npm run dev
 
-When the code is run with the command node mongo.js yourPassword, Mongo will add a new document to the database.
+run with the command node mongo.js yourPassword, Mongo will add a new document to the database.
