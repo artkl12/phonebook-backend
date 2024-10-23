@@ -148,8 +148,6 @@ const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: "unknown endpoint" });
 };
 
-app.use(unknownEndpoint);
-
 const errorHandler = (error, request, response, next) => {
   console.error(error.message);
 
@@ -161,7 +159,7 @@ const errorHandler = (error, request, response, next) => {
 
   next(error);
 };
-
+app.use(unknownEndpoint);
 // this has to be the last loaded middleware, also all the routes should be registered before this!
 app.use(errorHandler);
 
